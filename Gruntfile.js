@@ -159,7 +159,7 @@ module.exports = function (grunt) {
                 // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
                 options: {
                     // `name` and `out` is set by grunt-usemin
-                    baseUrl: 'app/scripts',
+                    baseUrl: '.tmp/scripts',
                     optimize: 'none',
                     // TODO: Figure out how to make sourcemaps work with grunt-usemin
                     // https://github.com/yeoman/grunt-usemin/issues/30
@@ -239,6 +239,15 @@ module.exports = function (grunt) {
                         '.htaccess'
                     ]
                 }]
+            },
+            requirejs: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: 'app',
+                    src: ['scripts/main.js', 'components/**'],
+                    dest: '.tmp/'
+                }]
             }
         },
         bower: {
@@ -276,6 +285,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
+        'copy:requirejs',
         'coffee',
         'compass:dist',
         'useminPrepare',
@@ -285,7 +295,7 @@ module.exports = function (grunt) {
         'concat',
         'cssmin',
         'uglify',
-        'copy',
+        'copy:dist',
         'usemin'
     ]);
 

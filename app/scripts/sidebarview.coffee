@@ -6,7 +6,7 @@ define [
     'backbone.marionette'
 ], (_, Backbone, postview) ->
     class SidebarView extends Backbone.Marionette.ItemView
-        className: 'span2'
+        className: 'span1'
         template_html: """
 <ul class="unstyled">
 <li><a href="mailto:chris@moultrie.org">chris@moultrie.org</a></li>
@@ -29,10 +29,10 @@ define [
 
 <p>Personally, I like this large amount of scaffolding/framework. It abstracts a lot of the things I normally have to manually and gives my app a clean, consistent feel across all of my views. For generic views I don't even need to implement the <code>render</code> method.</p>
 
-<p><b>Backbone.Marionette.ItemView</b> takes a function to compile the template. This can take the form of what you see here:  </p>
-<p><code> template: (serialized_model) =><br />
+<p><strong>Backbone.Marionette.ItemView</strong> takes a function to compile the template. This can take the form of what you see here:  </p>
+<pre> template: (serialized_model) =><br />
 &nbsp;&nbsp;&nbsp;&nbsp;_.template @template_html, serialized_model
-</code></p>
+</pre>
 
 <p>This is (obviously) a simple example, but what Marionette does is pass in a serialized version of the model attribute of your view. This is just a Backbone Model's attributes value, but it's very nice as every value in your model is available for your template. </p>
 

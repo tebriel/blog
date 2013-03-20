@@ -6,9 +6,9 @@ define [
 ], (_, Backbone) ->
     class HeaderView extends Backbone.Marionette.ItemView
         template_html:"""
-<h1 class="span4 offset1">Chris Moultrie</h1>
+<h1>Chris Moultrie's<small> js playground</small></h1>
         """
-        className: 'row-fluid'
+        className: 'page-header'
         template: (serialized_model) =>
             _.template @template_html
             
