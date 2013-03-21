@@ -236,7 +236,8 @@ module.exports = function (grunt) {
                     dest: '<%= yeoman.dist %>',
                     src: [
                         '*.{ico,txt}',
-                        '.htaccess'
+                        '.htaccess',
+                        'posts.json'
                     ]
                 }]
             },
@@ -260,6 +261,7 @@ module.exports = function (grunt) {
     grunt.renameTask('regarde', 'watch');
 
     grunt.registerTask('server', function (target) {
+        console.log("hello");
         if (target === 'dist') {
             return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
         }
