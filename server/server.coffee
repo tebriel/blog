@@ -1,6 +1,7 @@
 fs = require 'fs'
 http = require 'http'
 path = require 'path'
+process = require 'process'
 url = require 'url'
 
 express = require 'express'
@@ -37,7 +38,7 @@ if require.main is module
     
     app.use(express.static(__dirname + '/../dist'))
 
-    app.listen(27496)
-    console.log "Listening on 27496"
+    app.listen(process.env.PORT)
+    console.log "Listening on #{process.env.PORT}"
 
 
