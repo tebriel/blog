@@ -37,7 +37,7 @@ if require.main is module
     
     app.use(express.static(__dirname + '/../dist'))
 
-    app.listen(1337)
-    console.log "Listening on 1337"
+    app.listen(27496)
+    console.log "Listening on 27496"
 
 
