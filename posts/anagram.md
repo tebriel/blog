@@ -33,6 +33,7 @@ My solution to this first problem is on [My GitHub](https://github.com/tebriel/a
 The text given as a test for the first problem is located at: http://thumb.tk/8PYN
 
 This was fairly easy. My solution goes like this:
+
 1.  split up all the words
 1.  create all the unique combinations
 1.  sort the letters in each combination
