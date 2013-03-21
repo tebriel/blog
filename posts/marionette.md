@@ -15,4 +15,3 @@ template: (serialized_model) =>
 ```
 
 This is (obviously) a simple example, but what Marionette does is pass in a serialized version of the model attribute of your view. This is just a Backbone Model's attributes value, but it's very nice as every value in your model is available for your template.
-

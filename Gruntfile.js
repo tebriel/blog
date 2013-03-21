@@ -282,7 +282,6 @@ module.exports = function (grunt) {
         'coffee',
         'compass',
         'connect:test',
-        'mocha'
     ]);
 
     grunt.registerTask('build', [
