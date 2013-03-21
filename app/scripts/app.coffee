@@ -1,8 +1,9 @@
 define [
+    'jquery'
     'backbone'
     'headerview'
-    'sidebarview'
-], (Backbone, headerview, sidebarview) ->
+    'contentviews'
+], ($, Backbone, headerview, contentviews) ->
 
     MyApp = new Backbone.Marionette.Application()
     MyApp.addRegions
@@ -11,11 +12,14 @@ define [
 
     MyApp.start()
     #MyApp.contentRegion.show(collView)
-    #sidebar = new sidebarview.SidebarView
+    #sidebar = new contentviews.SidebarView
     #MyApp.contentRegion.show(sidebar)
-    bodyview = new sidebarview.BodyView
-    MyApp.contentRegion.show(bodyview)
-
-
     headerView = new headerview.HeaderView
     MyApp.titleRegion.show(headerView)
+
+    contentFetcher = $.get '/posts.json'
+    contentFetcher.done (posts)->
+        bodyview = new contentviews.BodyView(posts)
+        MyApp.contentRegion.show(bodyview)
+
+
