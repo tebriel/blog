@@ -1,1 +1,1 @@
-web: node node_modules/grunt-cli/bin/grunt server:heroku
+web: node node_modules/coffee-script/bin/coffee server/server.coffee

@@ -3,6 +3,8 @@ http = require 'http'
 path = require 'path'
 url = require 'url'
 
+express = require 'express'
+
 rs = require 'robotskirt'
 
 class PostBuilder
@@ -31,3 +33,11 @@ if require.main is module
     builder = new PostBuilder
     builder.initialize()
     fs.writeFileSync 'app/posts.json', JSON.stringify builder.mark_posts
+    app = express()
+    
+    app.use(express.static(__dirname + '/../dist'))
+
+    app.listen(1337)
+    console.log "Listening on 1337"
+
+
