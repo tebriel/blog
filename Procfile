@@ -1,1 +1,1 @@
-web: node node_modules/grunt-cli/bin/grunt server:dist
+web: node node_modules/grunt-cli/bin/grunt server:heroku
