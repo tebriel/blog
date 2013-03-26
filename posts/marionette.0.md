@@ -1,4 +1,4 @@
-# [Backbone.Marionette](#posts/marionette) #
+## [Backbone.Marionette](#posts/marionette) ##
 _March 19, 2013_
 
 Backbone is a fantastic technology for organizing data and composing views in an MVC Style Framework. It's not without its caveats though. There are things that could be easier/smoother and it would be nice if you could leverage Backbone more throughout your webapp.

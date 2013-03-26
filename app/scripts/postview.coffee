@@ -36,10 +36,11 @@ define [
             @collView = new PostCollection
                 collection:@postCollection
 
-            # Only do this once the posts are loaded
-            window.blog.execute 'startRouter'
 
             @postRegion.show(@collView)
+            
+            # Only do this once the posts are loaded
+            window.blog.execute 'startRouter'
 
     {
         PostCollection

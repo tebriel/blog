@@ -1,4 +1,4 @@
-# [Anagram.py](#posts/anagram) #
+## [Anagram.py](#posts/anagram) ##
 _March 22, 2013_
 
 At PyCon '13 many of the sponsors were offering up coding challenges as ways of

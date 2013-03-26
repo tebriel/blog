@@ -6,6 +6,7 @@ define [
 ], ($, Backbone) ->
     class BlogController
         showPost: (postPath) ->
+            console.log 'showSingle'
             window.blog.execute 'showSingle', postPath
         showAll: ->
             window.blog.execute 'showAll'
@@ -17,9 +18,9 @@ define [
 
     
     initializer = (options) ->
-        controller = new BlogController
-        new BlogRouter {controller}
+        new BlogRouter { controller: new BlogController }
         Backbone.history.start()
+        console.log "We're done here"
 
     {
         BlogController

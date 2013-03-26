@@ -22,7 +22,8 @@ define [
     blog.addInitializer headerview.initializer
 
     blog.commands.addHandler 'startRouter', ->
-        router.initializer
+        console.log "Router started"
+        router.initializer()
 
     blog.commands.addHandler 'showSingle', (name) ->
         model = blog.postCollection.where postName:name
