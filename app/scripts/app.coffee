@@ -7,31 +7,17 @@ define [
     'router'
 ], ($, Backbone, headerview, sidebarview, postview, router) ->
 
-    blog = new Backbone.Marionette.Application()
-    window.blog = blog
-    blog.addRegions
+    Blog = new Backbone.Marionette.Application()
+    window.Blog = Blog
+    Blog.addRegions
         postRegion: '#posts'
         sidebarRegion: '#sidebar'
         titleRegion: '#title'
 
-    showAllPosts = ->
-        blog.postRegion.show(blog.collView)
+    Blog.addInitializer postview.initializer
+    Blog.addInitializer sidebarview.initializer
+    Blog.addInitializer headerview.initializer
+    Blog.addInitializer router.initializer
 
-    blog.addInitializer postview.initializer
-    blog.addInitializer sidebarview.initializer
-    blog.addInitializer headerview.initializer
-
-    blog.commands.setHandler 'startRouter', ->
-        router.initializer()
-
-    blog.commands.setHandler 'showSingle', (name) ->
-        model = blog.postCollection.findWhere postName:name
-        postItemView = new postview.PostView { model:model }
-        blog.postRegion.show postItemView
-
-    blog.commands.setHandler 'showAll', ->
-        showAllPosts()
-
-    options = {}
-    blog.start(options)
+    Blog.start()
 

@@ -6,9 +6,9 @@ define [
 ], ($, Backbone) ->
     class BlogController
         showPost: (postPath) ->
-            window.blog.execute 'showSingle', postPath
+            window.Blog.execute 'showSingle', postPath
         showAll: ->
-            window.blog.execute 'showAll'
+            window.Blog.execute 'showAll'
 
     class BlogRouter extends Backbone.Marionette.AppRouter
         appRoutes:
@@ -17,12 +17,17 @@ define [
             "/": "showAll"
 
     
-    initializer = (options) ->
+    startRouterHandler = (options) ->
         router = new BlogRouter { controller: new BlogController }
         unless Backbone.history.start()
             router.navigate "home",
                 replace: true
                 trigger: false
+
+    initializer = ->
+        @commands.setHandler 'startRouter', ->
+            startRouterHandler()
+
 
     {
         BlogController
