@@ -7,9 +7,9 @@ define [
     'router'
 ], ($, Backbone, headerview, sidebarview, postview, router) ->
 
-    MyApp = new Backbone.Marionette.Application()
-    MyApp.addRegions
-        postRegion: '#all-posts'
+    blog = new Backbone.Marionette.Application()
+    blog.addRegions
+        postRegion: '#posts'
         sidebarRegion: '#sidebar'
         titleRegion: '#title'
 
@@ -22,7 +22,7 @@ define [
                 postIndex: index
 
         collView = new postview.PostCollection {collection}
-        window.collView = collView
+
         @postRegion.show(collView)
 
     sidebarInitializer = (options) ->
@@ -36,12 +36,14 @@ define [
         new router.BlogRouter
         Backbone.history.start()
 
-    MyApp.addInitializer postInitializer
-    MyApp.addInitializer sidebarInitializer
-    MyApp.addInitializer titleInitializer
-    MyApp.on 'initialize:after', routerInitializer
+    blog.addInitializer postInitializer
+    blog.addInitializer sidebarInitializer
+    blog.addInitializer titleInitializer
+    blog.on 'initialize:after', routerInitializer
 
     contentFetcher = $.get '/posts.json'
     contentFetcher.done (posts) =>
         options = posts:posts
-        MyApp.start(options)
+        blog.start(options)
+
+    window.blog = blog

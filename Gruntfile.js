@@ -246,7 +246,7 @@ module.exports = function (grunt) {
                     expand: true,
                     dot: true,
                     cwd: 'app',
-                    src: ['scripts/main.js', 'components/**'],
+                    src: ['scripts/main.js', 'components/**/*.js'],
                     dest: '.tmp/'
                 }]
             }
