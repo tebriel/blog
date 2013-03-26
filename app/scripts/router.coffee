@@ -15,11 +15,16 @@ define [
         appRoutes:
             "home": "showAll"
             "posts/*path": "showPost"
+            "/": "showAll"
 
     
     initializer = (options) ->
-        new BlogRouter { controller: new BlogController }
-        Backbone.history.start()
+        router = new BlogRouter { controller: new BlogController }
+        unless Backbone.history.start()
+            router.navigate "home",
+                replace: true
+                trigger: false
+
         console.log "We're done here"
 
     {
