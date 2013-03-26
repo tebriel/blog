@@ -17,13 +17,17 @@ class PostBuilder
     readPosts: ->
         postsFolder = 'posts'
         renderer = new rs.HtmlRenderer
-        parser = new rs.Markdown(renderer)
+        parser = new rs.Markdown(renderer, ['rs.EXT_AUTOLINK'])
 
         posts = fs.readdirSync postsFolder
-        result = {}
+        result = []
         for post in posts
             filename = path.join postsFolder, post
-            result[post] = parser.render fs.readFileSync filename
+            fileNum = filename.split('.')[1]
+            console.log fileNum
+            result[fileNum] =
+                text:parser.render fs.readFileSync filename
+                name: filename.split('.')[0]
 
         result
 
@@ -36,6 +40,8 @@ if require.main is module
     app = express()
     
     app.use(express.static(__dirname + '/../dist'))
+
+    process.env.PORT = 1337 unless process.env.PORT?
 
     app.listen(process.env.PORT)
     console.log "Listening on #{process.env.PORT}"
