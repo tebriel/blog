@@ -30,11 +30,11 @@ define [
     # Context is window
     showSingleHandler = (name) ->
         model = Blog.postCollection.findWhere postName:name
-        postItemView = new PostView { model:model }
+        postItemView = new PostView model:model
         Blog.postRegion.show postItemView
 
     showAllHandler = ->
-        Blog.postRegion.show(Blog.collView)
+        Blog.postRegion.show Blog.collView
 
     initializer = (options) ->
         contentFetcher = $.get '/posts.json'

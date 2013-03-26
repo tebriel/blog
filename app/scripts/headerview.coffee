@@ -13,7 +13,8 @@ define [
             _.template @template_html
             
     initializer = (options) ->
-        @titleRegion.show(new HeaderView)
+        @titleRegion.show new HeaderView
+
     {
         HeaderView
         initializer

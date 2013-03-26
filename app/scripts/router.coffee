@@ -18,7 +18,7 @@ define [
 
     
     startRouterHandler = (options) ->
-        router = new BlogRouter { controller: new BlogController }
+        router = new BlogRouter controller: new BlogController
         unless Backbone.history.start()
             router.navigate "home",
                 replace: true

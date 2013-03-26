@@ -40,7 +40,7 @@ define [
             sidebarColl = new SidebarModelCollection
             sidebarColl.add item for item in items
             sidebarView = new SidebarView collection:sidebarColl
-            @sidebarRegion.show(sidebarView)
+            @sidebarRegion.show sidebarView
 
     {
         SidebarModelCollection
