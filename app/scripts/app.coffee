@@ -25,8 +25,8 @@ define [
         router.initializer()
 
     blog.commands.setHandler 'showSingle', (name) ->
-        model = blog.postCollection.where postName:name
-        postItemView = new postview.PostView { model:model[0] }
+        model = blog.postCollection.findWhere postName:name
+        postItemView = new postview.PostView { model:model }
         blog.postRegion.show postItemView
 
     blog.commands.setHandler 'showAll', ->
