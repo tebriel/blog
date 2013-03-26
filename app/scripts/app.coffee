@@ -22,7 +22,6 @@ define [
     blog.addInitializer headerview.initializer
 
     blog.commands.addHandler 'startRouter', ->
-        console.log "Router started"
         router.initializer()
 
     blog.commands.addHandler 'showSingle', (name) ->

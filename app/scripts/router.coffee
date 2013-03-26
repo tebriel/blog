@@ -6,7 +6,6 @@ define [
 ], ($, Backbone) ->
     class BlogController
         showPost: (postPath) ->
-            console.log 'showSingle'
             window.blog.execute 'showSingle', postPath
         showAll: ->
             window.blog.execute 'showAll'
@@ -24,8 +23,6 @@ define [
             router.navigate "home",
                 replace: true
                 trigger: false
-
-        console.log "We're done here"
 
     {
         BlogController
