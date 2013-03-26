@@ -14,16 +14,20 @@ define [
         titleRegion: '#title'
 
     postInitializer = (options) ->
-        collection = new postview.PostModelCollection
-        window.postCollection = collection
+        @postCollection = new postview.PostModelCollection
         for post, index in options.posts
-            collection.add
+            @postCollection.add
                 postText: post.text
                 postIndex: index
+                postName: post.name
 
-        collView = new postview.PostCollection {collection}
+        @collView = new postview.PostCollection
+            collection:@postCollection
 
-        @postRegion.show(collView)
+        @postRegion.show(@collView)
+
+    showAllPosts = ->
+        blog.postRegion.show(blog.collView)
 
     sidebarInitializer = (options) ->
         sidebarView = new sidebarview.SidebarView
@@ -40,6 +44,14 @@ define [
     blog.addInitializer sidebarInitializer
     blog.addInitializer titleInitializer
     blog.on 'initialize:after', routerInitializer
+
+    blog.commands.addHandler 'showSingle', (name) ->
+        model = blog.postCollection.where postName:name
+        postItemView = new postview.PostView { model:model[0] }
+        blog.postRegion.show postItemView
+
+    blog.commands.addHandler 'showAll', ->
+        showAllPosts()
 
     contentFetcher = $.get '/posts.json'
     contentFetcher.done (posts) =>

@@ -23,11 +23,11 @@ class PostBuilder
         result = []
         for post in posts
             filename = path.join postsFolder, post
-            fileNum = filename.split('.')[1]
+            fileNum = post.split('.')[1]
             console.log fileNum
             result[fileNum] =
                 text:parser.render fs.readFileSync filename
-                name: filename.split('.')[0]
+                name: post.split('.')[0]
 
         result
 
