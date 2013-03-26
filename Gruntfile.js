@@ -237,7 +237,7 @@ module.exports = function (grunt) {
                     src: [
                         '*.{ico,txt}',
                         '.htaccess',
-                        'posts.json'
+                        '*.json'
                     ]
                 }]
             },

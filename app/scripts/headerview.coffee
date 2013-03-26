@@ -12,6 +12,9 @@ define [
         template: (serialized_model) =>
             _.template @template_html
             
+    initializer = (options) ->
+        @titleRegion.show(new HeaderView)
     {
         HeaderView
+        initializer
     }

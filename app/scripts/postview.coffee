@@ -15,8 +15,6 @@ define [
 
     class PostCollection extends Backbone.Marionette.CollectionView
         itemView: PostView
-        soloByName: (name) ->
-            @children.each ->
 
     class PostModel extends Backbone.Model
         defaults:
@@ -27,11 +25,26 @@ define [
     class PostModelCollection extends Backbone.Collection
         model: PostModel
         comparator: (post) ->
-            -post.get('postIndex')
+            -post.get 'postIndex'
+
+    initializer = (options) ->
+        contentFetcher = $.get '/posts.json'
+        contentFetcher.done (posts) =>
+            @postCollection = new PostModelCollection
+            @postCollection.add post for post in posts
+
+            @collView = new PostCollection
+                collection:@postCollection
+
+            # Only do this once the posts are loaded
+            window.blog.execute 'startRouter'
+
+            @postRegion.show(@collView)
 
     {
         PostCollection
         PostView
         PostModel
         PostModelCollection
+        initializer
     }
