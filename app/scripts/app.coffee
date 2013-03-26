@@ -21,15 +21,15 @@ define [
     blog.addInitializer sidebarview.initializer
     blog.addInitializer headerview.initializer
 
-    blog.commands.addHandler 'startRouter', ->
+    blog.commands.setHandler 'startRouter', ->
         router.initializer()
 
-    blog.commands.addHandler 'showSingle', (name) ->
+    blog.commands.setHandler 'showSingle', (name) ->
         model = blog.postCollection.where postName:name
         postItemView = new postview.PostView { model:model[0] }
         blog.postRegion.show postItemView
 
-    blog.commands.addHandler 'showAll', ->
+    blog.commands.setHandler 'showAll', ->
         showAllPosts()
 
     options = {}
