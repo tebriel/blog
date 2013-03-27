@@ -18,4 +18,5 @@ important, it's my testbed for learning different frameworks and techs.
 *  JQuery
 
 ### Where It Is ###
+
 Available at http://blog.frodux.org Deployed through [Heroku](http://heroku.com)
