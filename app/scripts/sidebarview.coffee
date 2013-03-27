@@ -7,13 +7,9 @@ define [
 ], (_, Backbone, postview) ->
 
     class SidebarItem extends Backbone.Marionette.ItemView
-        #className: 'span1'
         tagName: 'li'
         template_html: '<a href="<%= itemLink %>"><%= itemText %></a>'
-#<ul class="unstyled">
-#<li><a href="mailto:chris@moultrie.org">chris@moultrie.org</a></li>
-#<li><a href="http://twitter.com/tebriel">@tebriel</a></li>
-#</ul>
+
         template: (serialized_model) =>
             _.template @template_html, serialized_model
 
@@ -37,10 +33,11 @@ define [
     initializer = (options) ->
         sidebarFetcher = $.get '/sidebar.json'
         sidebarFetcher.done (items) =>
-            sidebarColl = new SidebarModelCollection
-            sidebarColl.add item for item in items
+            sidebarColl = new SidebarModelCollection items
             sidebarView = new SidebarView collection:sidebarColl
             @sidebarRegion.show sidebarView
+            window.sidebar = sidebarColl
+            window.sview = sidebarView
 
     {
         SidebarModelCollection

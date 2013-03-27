@@ -37,13 +37,13 @@ define [
         Blog.postRegion.show Blog.collView
 
     initializer = (options) ->
+        @commands.setHandler "showSingle", showSingleHandler
+        @commands.setHandler "showAll", showAllHandler
+
         contentFetcher = $.get '/posts.json'
         contentFetcher.done (posts) =>
-            @commands.setHandler "showSingle", showSingleHandler
-            @commands.setHandler "showAll", showAllHandler
 
-            @postCollection = new PostModelCollection
-            @postCollection.add post for post in posts
+            @postCollection = new PostModelCollection posts
 
             @collView = new PostCollection
                 collection:@postCollection
